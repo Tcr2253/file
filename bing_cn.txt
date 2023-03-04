@@ -1,0 +1,60 @@
+{
+	"request": [
+		{
+			"enable": true,
+			"name": "bing-cn-to-www",
+			"ruleType": "redirect",
+			"matchType": "prefix",
+			"pattern": "https://cn.bing.com",
+			"exclude": "",
+			"group": "未分组",
+			"isFunction": false,
+			"action": "redirect",
+			"to": "https://www.bing.com"
+		},
+		{
+			"enable": true,
+			"name": "cnn-to-www_clone",
+			"ruleType": "redirect",
+			"matchType": "prefix",
+			"pattern": "https://cnn.com",
+			"exclude": "",
+			"group": "未分组",
+			"isFunction": false,
+			"action": "redirect",
+			"to": "https://edition.cnn.com/"
+		}
+	],
+	"sendHeader": [
+		{
+			"enable": true,
+			"name": "bing",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": "^http(s?)://www\\.bing\\.com/(.*)",
+			"exclude": "",
+			"group": "未分组",
+			"isFunction": false,
+			"action": {
+				"name": "x-forwarded-for",
+				"value": "8.8.8.8"
+			}
+		},
+		{
+			"enable": true,
+			"name": "cnn_clone",
+			"ruleType": "modifySendHeader",
+			"matchType": "regexp",
+			"pattern": "^http(s?)://www\\.edition\\.cnn\\.com/(.*)",
+			"exclude": "",
+			"group": "未分组",
+			"isFunction": false,
+			"action": {
+				"name": "x-forwarded-for",
+				"value": "8.8.8.8"
+			}
+		}
+	],
+	"receiveHeader": [],
+	"receiveBody": []
+}
